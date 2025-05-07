@@ -1,0 +1,24 @@
+@font-face {
+  font-family: "DynaPuff";
+  src: url(/src/assets/fonts/DynaPuff-Regular.ttf);
+}
+
+@font-face {
+  font-family: "Nunito Regular";
+  src: url(/src/assets/fonts/Nunito-Regular.ttf);
+}
+
+@font-face {
+  font-family: "Nunito Bold";
+  src: url(/src/assets/fonts/Nunito-Bold.ttf);
+}
+
+:root {
+  background-color: #008b8b;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
