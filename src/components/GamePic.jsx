@@ -1,16 +1,28 @@
 import photo from "../assets/images/photo.jpg";
 import hiddenObjects from "../assets/images/hiddenobjects.jpg";
 import styles from "../styles/GamePic.module.css";
-import { useState } from "react";
+import { useState, useEffect, useRef} from "react";
 
 const GamePic = () => {
+  const hiddenObjectsList = [
+    "Bread",
+    "Fishbone",
+    "Bone",
+    "Icecream",
+    "Watermelon",
+    "Duck",
+    "Whale",
+    "Pizza",
+    "Butterfly",
+    "Turtle",
+  ];
 
-    const [position, setPosition] = useState(null)
+  const [position, setPosition] = useState(null);
 
   const handlePhotoClick = (event) => {
     const x = event.pageX;
     const y = event.pageY;
-    setPosition([x,y]);
+    setPosition([x, y]);
   };
 
   return (
@@ -21,7 +33,14 @@ const GamePic = () => {
         onClick={handlePhotoClick}
       ></img>
       <img src={hiddenObjects} className={styles.hiddenObjects}></img>
-      <p className={styles.dropdown} style={position && {left:position[0], top:position[1]}}>HERE</p>
+      <ul
+        className={styles.dropdown}
+        style={position && { display: "flex", left: position[0], top: position[1] }}
+      >
+        {hiddenObjectsList.map((hiddenobject, index) => {
+          return <li key={index} className={styles.dropdownItem}>{hiddenobject}</li>;
+        })}
+      </ul>
     </div>
   );
 };
