@@ -1,7 +1,7 @@
 import photo from "../assets/images/photo.jpg";
 import hiddenObjects from "../assets/images/hiddenobjects.jpg";
 import styles from "../styles/GamePic.module.css";
-import { useState, useEffect, useRef} from "react";
+import { useState, useEffect, useRef } from "react";
 
 const GamePic = () => {
   const hiddenObjectsList = [
@@ -17,6 +17,7 @@ const GamePic = () => {
     "Turtle",
   ];
 
+  const ref = useRef();
   const [position, setPosition] = useState(null);
 
   const handlePhotoClick = (event) => {
@@ -24,6 +25,20 @@ const GamePic = () => {
     const y = event.pageY;
     setPosition([x, y]);
   };
+
+  useEffect(() => {
+    const checkIfClickedOutside = (event) => {
+      if (ref.current && !ref.current.contains(event.target)) {
+        setPosition(null);
+      }
+    };
+
+    document.addEventListener("mousedown", checkIfClickedOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", checkIfClickedOutside);
+    };
+  }, []);
 
   return (
     <div className={styles.base}>
@@ -35,10 +50,17 @@ const GamePic = () => {
       <img src={hiddenObjects} className={styles.hiddenObjects}></img>
       <ul
         className={styles.dropdown}
-        style={position && { display: "flex", left: position[0], top: position[1] }}
+        style={
+          position && { display: "flex", left: position[0], top: position[1] }
+        }
+        ref={ref}
       >
         {hiddenObjectsList.map((hiddenobject, index) => {
-          return <li key={index} className={styles.dropdownItem}>{hiddenobject}</li>;
+          return (
+            <li key={index} className={styles.dropdownItem}>
+              {hiddenobject}
+            </li>
+          );
         })}
       </ul>
     </div>
