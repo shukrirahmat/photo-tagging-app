@@ -21,13 +21,15 @@ const GamePic = () => {
 
   const ref = useRef();
   const picRef = useRef();
-  const [position, setPosition] = useState(null);
+  const [position, setPosition] = useState([0, 0]);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   // Get coordinates upon click which also opens dropdown
   const handlePhotoClick = (event) => {
     const x = event.pageX;
     const y = event.pageY;
     setPosition([x, y]);
+    setDropdownOpen(true);
   };
 
 
@@ -35,7 +37,7 @@ const GamePic = () => {
   useEffect(() => {
     const checkIfClickedOutside = (event) => {
       if (ref.current && !ref.current.contains(event.target)) {
-        setPosition(null);
+        setDropdownOpen(false);
       }
     };
 
@@ -52,7 +54,7 @@ const GamePic = () => {
     if (element) {
       element.onload = () => {
         const rect = element.getBoundingClientRect();
-        console.log("Absolute position:", rect);
+        //console.log("Absolute position:", rect);
       };
     }
   }, []);
@@ -67,10 +69,8 @@ const GamePic = () => {
       ></img>
       <img src={hiddenObjects} className={styles.hiddenObjects}></img>
       <ul
-        className={styles.dropdown}
-        style={
-          position && { display: "flex", left: position[0], top: position[1] }
-        }
+        className={dropdownOpen? styles.dropdownOpened : styles.dropdownClosed}
+        style={{left: position[0], top: position[1] }}
         ref={ref}
       >
         {hiddenObjectsList.map((hiddenobject, index) => {
