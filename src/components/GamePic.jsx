@@ -1,12 +1,12 @@
 import photo from "../assets/images/photo.jpg";
-import hiddenObjects from "../assets/images/hiddenobjects.jpg";
+import hiddenItems from "../assets/images/hiddenitems.jpg";
 import styles from "../styles/GamePic.module.css";
 import { useState, useEffect, useRef } from "react";
 
 const GamePic = () => {
 
 
-  const hiddenObjectsList = [
+  const hiddenItemsList = [
     "Bread",
     "Fishbone",
     "Bone",
@@ -67,16 +67,16 @@ const GamePic = () => {
         onClick={handlePhotoClick}
         ref={picRef}
       ></img>
-      <img src={hiddenObjects} className={styles.hiddenObjects}></img>
+      <img src={hiddenItems} className={styles.hiddenItems}></img>
       <ul
         className={dropdownOpen? styles.dropdownOpened : styles.dropdownClosed}
         style={{left: position[0], top: position[1] }}
         ref={ref}
       >
-        {hiddenObjectsList.map((hiddenobject, index) => {
+        {hiddenItemsList.map((hiddenItem, index) => {
           return (
             <li key={index} className={styles.dropdownItem}>
-              {hiddenobject}
+              {hiddenItem}
             </li>
           );
         })}
