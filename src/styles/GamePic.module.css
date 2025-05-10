@@ -1,39 +1,66 @@
 .base {
-    padding: 10px 20px;
-    display: flex;
-    flex-direction: row;
-    gap: 100px;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #0b6464;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 100px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0b6464;
 }
 
 .photo:hover {
-    cursor:pointer;
+  cursor: pointer;
+}
+
+.photoWait:hover {
+  cursor: wait;
 }
 
 .dropdownClosed {
-    display: none;
+  display: none;
 }
 
 .dropdownOpened {
-    position: absolute;
-    list-style-type: none;
-    display: flex;
-    flex-direction: column;
-    border: 4px;
-    background-color: #d0f0c0;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  position: absolute;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  border: 4px;
+  background-color: #d0f0c0;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-
 .dropdownItem {
-    padding: 5px 10px;
-    font-family: "Nunito Regular", sans-serif;
+  padding: 5px 10px;
+  font-family: "Nunito Regular", sans-serif;
 }
 
 .dropdownItem:hover {
-    background-color: #0b6464;
-    color: #d0f0c0;
-    cursor: pointer;
+  background-color: #0b6464;
+  color: #d0f0c0;
+  cursor: pointer;
+}
+
+.message {
+  position: fixed;
+  left: 50px;
+  bottom: 20px;
+  font-family: "Nunito Bold", sans-serif;
+  color: greenyellow;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.4);
+  font-size: 25px;
+  animation-name: slide-in;
+  animation-duration: 2.5s;
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    bottom: -100px;
+  }
+
+  to {
+    bottom: 20px;
+    opacity: 1;
+  }
 }

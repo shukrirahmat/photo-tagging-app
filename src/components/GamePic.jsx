@@ -21,6 +21,8 @@ const GamePic = () => {
   const picRef = useRef();
   const [position, setPosition] = useState([0, 0]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [isVerifying, setIsVerifying] = useState(false);
+  const [message, setMessage] = useState("");
 
   // Get coordinates upon click which also opens dropdown
   const handlePhotoClick = (event) => {
@@ -37,8 +39,14 @@ const GamePic = () => {
     const rect = photo.getBoundingClientRect();
     const xpos = position[0] - (rect.left + window.scrollX);
     const ypos = position[1] - (rect.top + window.scrollY);
-    //continue here
+    //testing
+    setIsVerifying(true);
+    setMessage("Verifying...");
 
+    setTimeout(() => {
+      setIsVerifying(false);
+      setMessage("");
+    }, 2000);
   };
 
   // Set event for mouse clicks to close dropdown on image
@@ -58,12 +66,14 @@ const GamePic = () => {
 
   return (
     <div className={styles.base}>
-      <img
-        src={photo}
-        className={styles.photo}
-        onClick={handlePhotoClick}
-        ref={picRef}
-      ></img>
+      <div className={styles.photoContainer}>
+        <img
+          src={photo}
+          className={isVerifying? styles.photoWait : styles.photo}
+          onClick={!isVerifying? handlePhotoClick : undefined}
+          ref={picRef}
+        ></img>
+      </div>
       <img src={hiddenItems} className={styles.hiddenItems}></img>
       <ul
         className={dropdownOpen ? styles.dropdownOpened : styles.dropdownClosed}
@@ -84,6 +94,7 @@ const GamePic = () => {
           );
         })}
       </ul>
+      <p className={styles.message}>{message}</p>
     </div>
   );
 };
