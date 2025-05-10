@@ -4,8 +4,6 @@ import styles from "../styles/GamePic.module.css";
 import { useState, useEffect, useRef } from "react";
 
 const GamePic = () => {
-
-
   const hiddenItemsList = [
     "Bread",
     "Fishbone",
@@ -32,6 +30,16 @@ const GamePic = () => {
     setDropdownOpen(true);
   };
 
+  // Fetch API to verify whether the item found is corrects
+  const handleItemFound = (itemName) => {
+    setDropdownOpen(false);
+    const photo = picRef.current;
+    const rect = photo.getBoundingClientRect();
+    const xpos = position[0] - (rect.left + window.scrollX);
+    const ypos = position[1] - (rect.top + window.scrollY);
+    //continue here
+
+  };
 
   // Set event for mouse clicks to close dropdown on image
   useEffect(() => {
@@ -48,17 +56,6 @@ const GamePic = () => {
     };
   }, []);
 
-  // Get image position and size upon loading, this is important for normalizing coordinates
-  useEffect(() => {
-    const element = picRef.current;
-    if (element) {
-      element.onload = () => {
-        const rect = element.getBoundingClientRect();
-        //console.log("Absolute position:", rect);
-      };
-    }
-  }, []);
-
   return (
     <div className={styles.base}>
       <img
@@ -69,13 +66,19 @@ const GamePic = () => {
       ></img>
       <img src={hiddenItems} className={styles.hiddenItems}></img>
       <ul
-        className={dropdownOpen? styles.dropdownOpened : styles.dropdownClosed}
-        style={{left: position[0], top: position[1] }}
+        className={dropdownOpen ? styles.dropdownOpened : styles.dropdownClosed}
+        style={{ left: position[0], top: position[1] }}
         ref={ref}
       >
         {hiddenItemsList.map((hiddenItem, index) => {
           return (
-            <li key={index} className={styles.dropdownItem}>
+            <li
+              key={index}
+              className={styles.dropdownItem}
+              onClick={() => {
+                handleItemFound(hiddenItem);
+              }}
+            >
               {hiddenItem}
             </li>
           );
