@@ -67,3 +67,22 @@
     opacity: 1;
   }
 }
+
+.photoContainer {
+  position: relative;
+}
+
+.foundTag {
+  position: absolute;
+  border: 5px solid #080808;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.foundTag svg {
+  width: 40px;
+  filter: invert(0%) sepia(3%) saturate(1361%) hue-rotate(0deg) brightness(91%) contrast(94%);
+}
