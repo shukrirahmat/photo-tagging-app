@@ -4,6 +4,7 @@ import styles from "../styles/GamePic.module.css";
 import { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import url from "../api_url";
+import { differenceInMilliseconds } from "date-fns";
 
 const GamePic = ({ hiddenItemsList }) => {
   const ref = useRef();
@@ -15,6 +16,8 @@ const GamePic = ({ hiddenItemsList }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isVerifying, setIsVerifying] = useState(false);
   const [message, setMessage] = useState("");
+
+  const START_TIME = new Date();
   const [time, setTime] = useState(0);
 
   // Get coordinates upon click which also opens dropdown
@@ -77,6 +80,11 @@ const GamePic = ({ hiddenItemsList }) => {
       });
   };
 
+  const updateTime = () => {
+    const timer = differenceInMilliseconds(new Date(), START_TIME);
+    setTime(timer);
+  };
+
   // Set event for mouse clicks to close dropdown on image
   useEffect(() => {
     const checkIfClickedOutside = (event) => {
@@ -92,36 +100,49 @@ const GamePic = ({ hiddenItemsList }) => {
     };
   }, []);
 
+  // Update times for timer
+  useEffect(() => {
+    const interval = setInterval(() => updateTime(), 1000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <div className={styles.base}>
-      <div className={styles.photoContainer}>
-        <img
-          src={photo}
-          className={isVerifying ? styles.photoWait : styles.photo}
-          onClick={!isVerifying ? handlePhotoClick : undefined}
-          ref={picRef}
-        ></img>
-        {foundItems.map((item) => {
-          return (
-            <div
-              className={styles.foundTag}
-              key={item.name}
-              style={{
-                left: item.xstart,
-                top: item.ystart,
-                width: item.xend - item.xstart,
-                height: item.yend - item.ystart,
-              }}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <title>check-bold</title>
-                <path d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z" />
-              </svg>
-            </div>
-          );
-        })}
+    <>
+      <div className={styles.base}>
+        <div className={styles.photoContainer}>
+          <img
+            src={photo}
+            className={isVerifying ? styles.photoWait : styles.photo}
+            onClick={!isVerifying ? handlePhotoClick : undefined}
+            ref={picRef}
+          ></img>
+          {foundItems.map((item) => {
+            return (
+              <div
+                className={styles.foundTag}
+                key={item.name}
+                style={{
+                  left: item.xstart,
+                  top: item.ystart,
+                  width: item.xend - item.xstart,
+                  height: item.yend - item.ystart,
+                }}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <title>check-bold</title>
+                  <path d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z" />
+                </svg>
+              </div>
+            );
+          })}
+        </div>
+        <img src={hiddenItems} className={styles.hiddenItems}></img>
+        {message && <p className={styles.message}>{message}</p>}
+        <p className={styles.timer}>
+          Times elapsed: {Math.floor(time / 1000)} seconds
+        </p>
       </div>
-      <img src={hiddenItems} className={styles.hiddenItems}></img>
       <ul
         className={dropdownOpen ? styles.dropdownOpened : styles.dropdownClosed}
         style={{ left: position[0], top: position[1] }}
@@ -141,8 +162,7 @@ const GamePic = ({ hiddenItemsList }) => {
           );
         })}
       </ul>
-      {message && <p className={styles.message}>{message}</p>}
-    </div>
+    </>
   );
 };
 

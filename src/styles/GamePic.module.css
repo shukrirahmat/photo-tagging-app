@@ -6,6 +6,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: #0b6464;
+  position: relative;
 }
 
 .photo:hover {
@@ -85,4 +86,13 @@
 .foundTag svg {
   width: 40px;
   filter: invert(0%) sepia(3%) saturate(1361%) hue-rotate(0deg) brightness(91%) contrast(94%);
+}
+
+.timer {
+  position: absolute;
+  font-family: "Nunito Bold", sans-serif;
+  color: #d0f0c0;
+  right: 50px;
+  top: 20px;
+
 }
