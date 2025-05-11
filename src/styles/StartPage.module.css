@@ -1,5 +1,5 @@
 .base {
-    height: 100vh;
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -11,7 +11,7 @@
 .title {
     font-family: "DynaPuff", sans-serif;
     font-size: 70px;
-    color: #d0f0c0;
+    color: gold;
     text-shadow: 5px 5px rgba(0, 0, 0, 0.4);
     position: absolute;
     top: 25%;
@@ -31,4 +31,17 @@
 .playBtn:hover{
     cursor: pointer;
     background-color: #9fd584;
+}
+
+.playBtn:disabled{
+    background-color: #9fd584;
+    opacity: 0.4;
+}
+
+.loadMessage{
+    font-family: "Nunito Bold", sans-serif;
+    font-size: 18px;
+    color: #d0f0c0;
+    position: absolute;
+    top: 60%;
 }

@@ -2,23 +2,14 @@ import photo from "../assets/images/photo.jpg";
 import hiddenItems from "../assets/images/hiddenitems.jpg";
 import styles from "../styles/GamePic.module.css";
 import { useState, useEffect, useRef } from "react";
+import PropTypes from "prop-types";
 
-const GamePic = () => {
-  const hiddenItemsList = [
-    "Bread",
-    "Fishbone",
-    "Bone",
-    "Icecream",
-    "Watermelon",
-    "Duck",
-    "Whale",
-    "Pizza",
-    "Butterfly",
-    "Turtle",
-  ];
+const GamePic = ({hiddenItemsList}) => {
 
   const ref = useRef();
   const picRef = useRef();
+
+  const [itemsList, setItemsList] = useState(hiddenItemsList);
   const [position, setPosition] = useState([0, 0]);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isVerifying, setIsVerifying] = useState(false);
@@ -80,23 +71,27 @@ const GamePic = () => {
         style={{ left: position[0], top: position[1] }}
         ref={ref}
       >
-        {hiddenItemsList.map((hiddenItem, index) => {
+        {itemsList.map((item, index) => {
           return (
             <li
               key={index}
               className={styles.dropdownItem}
               onClick={() => {
-                handleItemFound(hiddenItem);
+                handleItemFound(item);
               }}
             >
-              {hiddenItem}
+              {item}
             </li>
           );
         })}
       </ul>
-      <p className={styles.message}>{message}</p>
+      {message && <p className={styles.message}>{message}</p>}
     </div>
   );
 };
+
+GamePic.propTypes = {
+    hiddenItemsList: PropTypes.array,
+}
 
 export default GamePic;

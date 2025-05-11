@@ -1,0 +1,15 @@
+.base {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.footer {
+    font-family: "Nunito Bold", sans-serif;
+    font-size: 14px;
+    color: #d0f0c0;
+    text-align: center;
+    padding: 5px;
+
+}
