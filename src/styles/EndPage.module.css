@@ -1,96 +1,110 @@
 .base {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    padding: 50px 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 50px 0;
 }
 
 .title {
-    font-family: "DynaPuff", sans-serif;
-    font-size: 50px;
-    color: gold;
-    text-shadow: 5px 5px rgba(0, 0, 0, 0.4);
+  font-family: "DynaPuff", sans-serif;
+  font-size: 50px;
+  color: gold;
+  text-shadow: 5px 5px rgba(0, 0, 0, 0.4);
 }
 
 .content {
-    background-color: #d0f0c0;
-    color: #0b6464;
-    max-width: 600px;
-    padding: 25px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    align-items: center;
-    border-radius: 10px;
-    font-family: "Nunito Bold", sans-serif;
+  background-color: #d0f0c0;
+  color: #0b6464;
+  max-width: 600px;
+  padding: 25px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+  border-radius: 10px;
+  font-family: "Nunito Bold", sans-serif;
 }
 
 .record h2 {
-    text-align: center;
-    font-size: 40px;
+  text-align: center;
+  font-size: 40px;
 }
 
 .record h2 span {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 .form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .form input {
-    font-family: "Nunito Regular", sans-serif;
-    font-size: 18px;
-    padding: 2px 5px;
-    outline: none;
-    border: 1px solid grey;
-    background-color: whitesmoke;
+  font-family: "Nunito Regular", sans-serif;
+  font-size: 18px;
+  padding: 2px 5px;
+  outline: none;
+  border: 1px solid grey;
+  background-color: whitesmoke;
 }
 
 .form input:focus {
-    outline: 2px solid #0b6464;
+  outline: 2px solid #0b6464;
 }
 
 .form textarea {
-    resize: none;
-    height: 100px;
-    font-family: "Nunito Regular", sans-serif;
-    font-size: 18px;
-    padding: 2px 5px;
-    outline: none;
-    border: 1px solid grey;
-    background-color: whitesmoke;
+  resize: none;
+  height: 100px;
+  font-family: "Nunito Regular", sans-serif;
+  font-size: 18px;
+  padding: 2px 5px;
+  outline: none;
+  border: 1px solid grey;
+  background-color: whitesmoke;
 }
 
 .form textarea:focus {
-    outline: 2px solid #0b6464;
+  outline: 2px solid #0b6464;
 }
 
 .form button {
-    border: 1px solid #0b6464;
-    font-family: "Nunito Bold", sans-serif;
-    font-size: 20px;
-    padding: 5px 20px;
-    border-radius: 5px;
-    background-color: #d0f0c0;
-    color: #0b6464;
-    align-self: center;
-    
+  border: 1px solid #0b6464;
+  font-family: "Nunito Bold", sans-serif;
+  font-size: 20px;
+  padding: 5px 20px;
+  border-radius: 5px;
+  background-color: #d0f0c0;
+  color: #0b6464;
+  align-self: center;
 }
 
-.form button:hover{
-    cursor: pointer;
-    background-color: #9fd584;
+.form button:hover {
+  cursor: pointer;
+  background-color: #9fd584;
 }
 
-.form button:disabled{
-    cursor: default;
-    background-color: #9fd584;
-    opacity: 0.4;
+.form button:disabled {
+  cursor: default;
+  background-color: #9fd584;
+  opacity: 0.4;
+}
+
+.errorMessage {
+  position: fixed;
+  left: 50px;
+  bottom: 20px;
+  font-family: "Nunito Bold", sans-serif;
+  color: #0b6464;
+  font-size: 25px;
+  animation-name: slide-in;
+  animation-duration: 0.5s;
+  background-color: #d0f0c0;
+  padding: 5px 15px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }

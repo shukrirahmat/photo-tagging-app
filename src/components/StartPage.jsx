@@ -1,22 +1,22 @@
 import styles from "../styles/StartPage.module.css";
 import PropTypes from "prop-types";
 
-const StartPage = ({startGame, isLoading, loadError}) => {
+const StartPage = ({startGame, isLoadingItems, loadItemsError}) => {
 
     return (
         <div className={styles.base}>
             <h1 className={styles.title}>HIDDEN OBJECTS</h1>
-            {isLoading && <p className={styles.loadMessage}>Loading... (It will take longer the first time)</p>}
-            {loadError && <p className={styles.loadMessage}>{loadError}</p>}
-            <button className={styles.playBtn} onClick={startGame} disabled={isLoading || loadError}>START</button>
+            {isLoadingItems && <p className={styles.loadMessage}>Loading... (It will take longer the first time)</p>}
+            {loadItemsError && <p className={styles.loadMessage}>{loadItemsError}</p>}
+            <button className={styles.playBtn} onClick={startGame} disabled={isLoadingItems || loadItemsError}>START</button>
         </div>
     )
 }
 
 StartPage.propTypes = {
     startGame: PropTypes.bool,
-    isLoading: PropTypes.bool,
-    loadError: PropTypes.string
+    isLoadingItems: PropTypes.bool,
+    loadItemsError: PropTypes.string
 }
 
 export default StartPage;

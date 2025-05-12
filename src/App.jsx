@@ -7,11 +7,11 @@ import url from "./api_url.jsx";
 
 function App() {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingItems, setIsLoadingItems] = useState(true);
+  const [loadItemsError, setLoadItemsError] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
   const [finishTime, setFinishTime] = useState(0);
   const [hiddenItemsList, setHiddenItemsList] = useState([]);
-  const [loadError, setLoadError] = useState(false);
 
   const startGame = () => {
     setIsPlaying(true);
@@ -27,9 +27,15 @@ function App() {
     setIsPlaying(false);
   }
 
+  const resetPage = () => {
+    setIsFinished(false);
+    setIsPlaying(false);
+    setFinishTime(0);
+  }
+
   //Fetching object names
   useEffect(() => {
-    setIsLoading(true);
+    setIsLoadingItems(true);
     fetch(url + "/items", {
       mode: "cors",
       method: "GET",
@@ -40,25 +46,25 @@ function App() {
       })
       .then((data) => {
         setHiddenItemsList(data);
-        setIsLoading(false);
+        setIsLoadingItems(false);
       })
       .catch((err) => {
-        setLoadError(err);
-        setIsLoading(false);
+        setLoadItemsError(err.message);
+        setIsLoadingItems(false);
       });
   }, []);
 
   return (
     <div className={styles.base}>
       {isFinished? (
-        <EndPage time={finishTime} />
+        <EndPage time={finishTime} resetPage={resetPage}/>
       ) : isPlaying? (
         <GamePage quitGame={quitGame} hiddenItemsList={hiddenItemsList}  finishGame={finishGame}/>
       ) : (
         <StartPage
           startGame={startGame}
-          isLoading={isLoading}
-          loadError={loadError}
+          isLoadingItems={isLoadingItems}
+          loadItemsError={loadItemsError}
         />
       )}
       <p className={styles.footer}> Created by © shkrrhmt 2025</p>

@@ -74,7 +74,7 @@ const GamePic = ({ hiddenItemsList, finishGame }) => {
       })
       .catch((err) => {
         setIsVerifying(false);
-        setMessage(err);
+        setMessage(err.message);
         setTimeout(() => {
           setMessage("");
         }, 3000);
