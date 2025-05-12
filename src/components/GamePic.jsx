@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import url from "../api_url";
 import { differenceInMilliseconds } from "date-fns";
 
-const GamePic = ({ hiddenItemsList }) => {
+const GamePic = ({ hiddenItemsList, finishGame }) => {
   const ref = useRef();
   const picRef = useRef();
 
@@ -18,6 +18,7 @@ const GamePic = ({ hiddenItemsList }) => {
   const [message, setMessage] = useState("");
 
   const START_TIME = new Date();
+  const NUMBER_OF_ITEMS = hiddenItemsList.length;
   const [time, setTime] = useState(0);
 
   // Get coordinates upon click which also opens dropdown
@@ -107,6 +108,13 @@ const GamePic = ({ hiddenItemsList }) => {
     return () => clearInterval(interval);
   }, []);
 
+  // Checking if everything found 
+  useEffect(() => {
+    if (foundItems.length >= NUMBER_OF_ITEMS) {
+      finishGame(time);
+    }
+  }, [foundItems])
+
   return (
     <>
       <div className={styles.base}>
@@ -168,6 +176,7 @@ const GamePic = ({ hiddenItemsList }) => {
 
 GamePic.propTypes = {
   hiddenItemsList: PropTypes.array,
+  finishGame: PropTypes.func
 };
 
 export default GamePic;
