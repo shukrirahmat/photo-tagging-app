@@ -34,8 +34,16 @@ const GamePic = ({ hiddenItemsList, finishGame }) => {
     setDropdownOpen(false);
     const photo = picRef.current;
     const rect = photo.getBoundingClientRect();
-    const xpos = position[0] - (rect.left + window.scrollX);
-    const ypos = position[1] - (rect.top + window.scrollY);
+    let xpos = position[0] - (rect.left + window.scrollX);
+    let ypos = position[1] - (rect.top + window.scrollY);
+
+    if (rect.height !== 933 || rect.width !== 717) {
+      xratio = rect.height/933;
+      yratio = rect.height/717;
+
+      xpos = xpos * xratio;
+      ypos = ypos * yratio;
+    }
 
     setIsVerifying(true);
     setMessage("Verifying...");
