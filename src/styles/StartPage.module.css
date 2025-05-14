@@ -1,48 +1,137 @@
 .base {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  padding: 100px 20px;
 }
 
 .title {
-    font-family: "DynaPuff", sans-serif;
-    font-size: 70px;
-    color: gold;
-    text-shadow: 5px 5px rgba(0, 0, 0, 0.4);
-    position: absolute;
-    top: 25%;
+  font-family: "DynaPuff", sans-serif;
+  font-size: 70px;
+  color: gold;
+  text-shadow: 5px 5px rgba(0, 0, 0, 0.4);
 }
 
 .playBtn {
-    border: none;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  margin-bottom: 50px;
+}
+
+.playBtn button {
+  border: none;
+  font-family: "Nunito Bold", sans-serif;
+  font-size: 25px;
+  padding: 5px 20px;
+  border-radius: 5px;
+  background-color: #d0f0c0;
+  color: #0b6464;
+}
+
+.playBtn button:hover {
+  cursor: pointer;
+  background-color: #9fd584;
+}
+
+.playBtn button:disabled {
+  cursor: default;
+  background-color: #9fd584;
+  opacity: 0.4;
+}
+
+.itemLoadMessage {
+  font-family: "Nunito Bold", sans-serif;
+  font-size: 18px;
+  color: #d0f0c0;
+  position: absolute;
+  bottom: -30px;
+}
+
+.rankings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.rankings h2 {
+  font-family: "Nunito Bold", sans-serif;
+  font-size: 25px;
+  font-weight: normal;
+  color: #112424;
+}
+
+.rankings p {
+  font-family: "Nunito Bold", sans-serif;
+  font-size: 18px;
+  color: #d0f0c0;
+}
+
+.rankings table {
+  width: 600px;
+  background-color: #d0f0c0;
+  padding: 10px;
+  border-radius: 10px;
+  font-family: "Nunito Regular", sans-serif;
+  color: #112424;
+  text-align: center;
+}
+
+.tableHead {
+  font-family: "Nunito Bold", sans-serif;
+}
+
+.commentsSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.commentsSection h2 {
+  font-family: "Nunito Bold", sans-serif;
+  font-size: 25px;
+  font-weight: normal;
+  color: #112424;
+}
+
+.commentsSection > p {
+  font-family: "Nunito Bold", sans-serif;
+  font-size: 18px;
+  color: #d0f0c0;
+}
+
+.commentsContainer {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  gap: 20px;
+}
+
+.comment {
+  background-color: #d0f0c0;
+  padding: 10px;
+  border-radius: 10px;
+  font-family: "Nunito Regular", sans-serif;
+  color: #112424;
+  display: flex;
+  flex-direction: column;
+}
+
+.commentWriter {
     font-family: "Nunito Bold", sans-serif;
-    font-size: 25px;
+}
+
+.commentText {
     padding: 5px 20px;
-    border-radius: 5px;
-    background-color: #d0f0c0;
-    color: #0b6464;
-    
 }
 
-.playBtn:hover{
-    cursor: pointer;
-    background-color: #9fd584;
-}
-
-.playBtn:disabled{
-    cursor: default;
-    background-color: #9fd584;
-    opacity: 0.4;
-}
-
-.loadMessage{
-    font-family: "Nunito Bold", sans-serif;
-    font-size: 18px;
-    color: #d0f0c0;
-    position: absolute;
-    top: 60%;
+.commentDate {
+    align-self: flex-end;
 }
