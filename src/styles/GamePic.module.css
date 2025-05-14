@@ -97,3 +97,12 @@
   top: 20px;
 
 }
+
+.loadingMessage {
+  color: #d0f0c0;
+  font-family: "Nunito Bold", sans-serif;
+}
+
+.hiddenBase {
+  display: none;
+}

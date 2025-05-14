@@ -16,10 +16,24 @@ const GamePic = ({ hiddenItemsList, finishGame }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isVerifying, setIsVerifying] = useState(false);
   const [message, setMessage] = useState("");
+  const [isMainImgLoaded, setIsMainImgLoaded] = useState(false);
+  const [isSideImgLoaded, setIsSideImgLoaded] = useState(false);
 
   const START_TIME = new Date();
   const NUMBER_OF_ITEMS = hiddenItemsList.length;
   const [time, setTime] = useState(0);
+
+
+  //confirms that image is loaded
+  const mainImgLoaded = () => {
+    setIsMainImgLoaded(true);
+    setTime(0);
+  }
+
+  const sideImgLoaded = () => {
+    setIsSideImgLoaded(true);
+    setTime(0);
+  }
 
   // Get coordinates upon click which also opens dropdown
   const handlePhotoClick = (event) => {
@@ -125,13 +139,14 @@ const GamePic = ({ hiddenItemsList, finishGame }) => {
 
   return (
     <>
-      <div className={styles.base}>
+      <div className={isMainImgLoaded && isSideImgLoaded? styles.base : styles.hiddenBase}>
         <div className={styles.photoContainer}>
           <img
             src={photo}
             className={isVerifying ? styles.photoWait : styles.photo}
             onClick={!isVerifying ? handlePhotoClick : undefined}
             ref={picRef}
+            onLoad={mainImgLoaded}
           ></img>
           {foundItems.map((item) => {
             return (
@@ -153,11 +168,11 @@ const GamePic = ({ hiddenItemsList, finishGame }) => {
             );
           })}
         </div>
-        <img src={hiddenItems} className={styles.hiddenItems}></img>
+        <img src={hiddenItems} className={styles.hiddenItems} onLoad={sideImgLoaded}></img>
         {message && <p className={styles.message}>{message}</p>}
-        <p className={styles.timer}>
+        {isMainImgLoaded && isSideImgLoaded && <p className={styles.timer}>
           Times elapsed: {Math.floor(time / 1000)} seconds
-        </p>
+        </p>}
       </div>
       <ul
         className={dropdownOpen ? styles.dropdownOpened : styles.dropdownClosed}
