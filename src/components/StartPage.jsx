@@ -71,7 +71,7 @@ const StartPage = ({ startGame, isLoadingItems, loadItemsError }) => {
         </button>
         {isLoadingItems && (
           <p className={styles.itemLoadMessage}>
-            Loading... (It will take longer the first time)
+            Waking up the server from sleep...
           </p>
         )}
         {loadItemsError && (
