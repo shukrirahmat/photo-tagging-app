@@ -20,6 +20,8 @@ const GamePic = ({ hiddenItemsList, finishGame }) => {
   const [isSideImgLoaded, setIsSideImgLoaded] = useState(false);
 
   const START_TIME = new Date();
+  const IMG_HEIGHT = 933;
+  const IMG_WIDTH = 717
   const NUMBER_OF_ITEMS = hiddenItemsList.length;
   const [time, setTime] = useState(0);
 
@@ -51,9 +53,9 @@ const GamePic = ({ hiddenItemsList, finishGame }) => {
     let xpos = position[0] - (rect.left + window.scrollX);
     let ypos = position[1] - (rect.top + window.scrollY);
 
-    if (rect.height !== 933 || rect.width !== 717) {
-      xratio = rect.height/933;
-      yratio = rect.height/717;
+    if (rect.height !== IMG_HEIGHT || rect.width !== IMG_WIDTH) {
+      xratio = rect.height/IMG_HEIGHT;
+      yratio = rect.width/IMG_WIDTH;
 
       xpos = xpos * xratio;
       ypos = ypos * yratio;
